@@ -123,3 +123,14 @@ To run the project:
 ```bash
 pip install -r requirements.txt
 python train.py
+
+
+## Experimental Details
+
+- Dataset size: 2000000 samples
+- Train/Test split: 80/20
+- Batch size: 32
+- Epochs: 20
+- Hardware: NVIDIA GPU / CPU
+- Early stopping applied to prevent overfitting
+
