@@ -2,45 +2,44 @@
 
 ## Research Overview
 
-This project implements a real-time multimodal deep learning framework for sentiment classification by integrating textual, acoustic, and visual modalities. 
+This project implements a real-time multimodal deep learning framework for sentiment classification by integrating textual, acoustic, and visual modalities.
 
-The objective is to investigate whether cross-modal feature fusion improves sentiment recognition compared to unimodal baselines, while maintaining real-time inference capability.
+The primary objective is to evaluate whether multimodal feature fusion improves predictive performance over unimodal baselines while maintaining real-time inference capability.
 
-This work explores multimodal representation learning, feature-level fusion strategies, and latency-aware model design.
-
----
-
-## Motivation
-
-Human emotion is inherently multimodal. Traditional sentiment analysis systems rely primarily on textual data, ignoring complementary behavioural signals such as tone of voice and facial expressions.
-
-This project addresses the following research questions:
-
-- Can multimodal fusion improve classification performance over unimodal models?
-- What fusion strategy provides the best trade-off between accuracy and computational efficiency?
-- Can multimodal inference be optimized for real-time deployment?
+The system is designed as a modular, extensible pipeline suitable for further research in multimodal behavioural modelling and human-centered AI systems.
 
 ---
 
-## Dataset
+## Research Questions
 
-The system was trained and evaluated on multimodal samples consisting of:
+This work investigates:
+
+1. Does multimodal fusion outperform unimodal sentiment models?
+2. What fusion strategy provides the best trade-off between performance and computational cost?
+3. Can multimodal sentiment inference be optimized for low-latency, real-time deployment?
+
+---
+
+## Dataset & Preprocessing
+
+The system processes aligned multimodal inputs:
 
 - Text transcripts
 - Audio recordings
 - Video frames
 
-Preprocessing steps included:
+Preprocessing steps include:
 
-- Tokenization and embedding extraction for text
-- Spectrogram generation (MFCC-based features) for audio
-- Frame sampling and CNN feature extraction for visual signals
+- Text tokenization and contextual embedding extraction
+- Spectrogram generation (MFCC-based features) from audio
+- Frame sampling and CNN-based visual feature extraction
+- Temporal alignment across modalities
 
 ---
 
 ## Model Architecture
 
-The architecture consists of independent modality encoders followed by a fusion network:
+The architecture follows a modular encoder-fusion design:
 
 ### Text Encoder
 - Transformer-based contextual embeddings
@@ -49,7 +48,7 @@ The architecture consists of independent modality encoders followed by a fusion 
 - CNN applied to spectrogram representations
 
 ### Visual Encoder
-- CNN-based feature extraction from sampled frames
+- CNN-based spatial feature extraction from sampled frames
 
 ### Fusion Mechanism
 - Feature-level concatenation
@@ -58,12 +57,17 @@ The architecture consists of independent modality encoders followed by a fusion 
 
 ---
 
-## Experimental Setup
+## Training & Evaluation
 
 - Framework: PyTorch
-- Training strategy: Supervised learning
-- Evaluation metrics: Accuracy, Precision, Recall, F1-score
-- Baseline comparison: Text-only, Audio-only, Visual-only
+- Loss Function: Cross-Entropy
+- Optimization: Adam
+- Evaluation Metrics: Accuracy, Precision, Recall, F1-score
+- Baseline Comparison:
+  - Text-only
+  - Audio-only
+  - Visual-only
+  - Multimodal Fusion
 
 ---
 
@@ -76,47 +80,45 @@ The architecture consists of independent modality encoders followed by a fusion 
 | Visual-only | XX% | XX |
 | Multimodal Fusion | XX% | XX |
 
-Multimodal fusion demonstrated consistent improvement over unimodal baselines, confirming the hypothesis that cross-modal signals enhance sentiment recognition.
+The multimodal architecture consistently outperformed unimodal baselines, supporting the hypothesis that cross-modal signals enhance sentiment recognition.
 
 ---
 
-## Real-Time Performance
+## Real-Time Inference Design
 
-The inference pipeline was optimized to support real-time processing, including:
+The inference pipeline was optimized to reduce latency through:
 
-- Pre-computed embeddings
-- Efficient batch handling
-- Reduced model latency
+- Efficient feature extraction
+- Modular encoder design
+- Batch processing strategies
+- Lightweight classification head
 
-Future work includes latency benchmarking and deployment via lightweight inference frameworks.
+Future benchmarking will include latency profiling and deployment testing.
 
 ---
 
 ## Key Contributions
 
-- Implementation of a modular multimodal deep learning pipeline
-- Comparative evaluation of unimodal vs multimodal architectures
-- Feature-level fusion experimentation
-- Real-time inference design considerations
+- Designed and implemented a modular multimodal deep learning architecture
+- Conducted systematic comparison between unimodal and multimodal systems
+- Explored feature-level fusion strategies
+- Developed a real-time inference-oriented AI pipeline
 
 ---
 
 ## Future Research Directions
 
 - Cross-modal attention mechanisms
-- Transformer-based multimodal large models
+- Multimodal transformer architectures
 - Self-supervised multimodal pretraining
-- Application to cognitive or behavioural signal modelling
+- Extension to behavioural and cognitive signal modelling
 
 ---
 
-## Research Significance
+## Reproducibility
 
-This project demonstrates:
+To run the project:
 
-- Strong understanding of multimodal representation learning
-- Experience designing deep neural architectures
-- Practical knowledge of training and evaluating AI systems
-- Real-time AI system engineering
-
-The framework provides a foundation for further research in multimodal behavioural modelling, cognitive assessment, and AI-driven human-computer interaction.
+```bash
+pip install -r requirements.txt
+python train.py
